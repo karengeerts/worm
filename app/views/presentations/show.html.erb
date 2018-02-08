@@ -6,41 +6,43 @@
     <button>logout</button>
   </form>
   <h2>Logged in as: <%= current_user.username %></h2>
-  <p><a href="teachers/<%=current_user.id%>">Go to my dashboard</a></p>
+  <p><a href="/teachers/<%=current_user.id%>">Go to my dashboard</a></p>
 <% end %>
 
 
-<h2><%= @presentation.description %></h2>
+<h2>Presentation: <%= @presentation.description %></h2>
 
 <p>
-  <%= @presentation.metric %>
+  Please rate your score about: <%= @presentation.metric %>
 </p>
 <p>
-  <%= @presentation.date %>
-  <%= @presentation.start_time %>
-  <%= @presentation.end_time %>
+  Use this code to share with your students: <%= @presentation.uuid %>
 </p>
 
-<!-- <form action="/session" method="post">
+<p>
+  Presentation date: <%= @presentation.date %>
+</p>
+<p>
+  Start time: <%= @start_time %>
+</p>
+<p>
+  End time: <%= @end_time %>
+</p>
 
-   <label for="">Session Title</label>
-   <input type="text" name="sessiontitle" placeholder="code">
-   <br>
-   <br>
-
-   <label for="">Session Time</label>
-   <input type="text" name="sessiontime" placeholder="code">
-   <br>
-    <br>
-
-   <label for="">Session Code</label>
-   <input type="text" name="sessioncode" placeholder="code">
-   <br>
-   <br>
-
-   <button>Start</button>
+<form action="/presentations/<%=@presentation.id%>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <button>Delete</button>
 </form>
- -->
-<br>
+
+<a href="/presentations/<%=@presentation.id%>/edit">Update</a>
+
 
 <canvas id="chart_test" height="400px" width="600px"></canvas>
+
+<script>
+
+  // setInterval (function(){
+  //   location.reload();
+  // }, 10000);
+</script>
